@@ -11,109 +11,69 @@
 
 <style>
 
-/* ОСНОВА */
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    cursor:url("cursor.cur"), auto;
+margin:0;
+padding:0;
+box-sizing:border-box;
+cursor:url("cursor.cur"),auto;
 }
 
 
 body{
 
-    background:#000;
+background:#000;
 
-    color:white;
+color:white;
 
-    font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 
-    min-height:100vh;
+min-height:100vh;
 
-    overflow-x:hidden;
+overflow-x:hidden;
 
 }
 
 
 
-/* ЭКРАН ЗАГРУЗКИ */
 
+/* загрузка */
 
 #loader{
 
-    position:fixed;
+position:fixed;
 
-    inset:0;
+inset:0;
 
-    background:#000;
+background:#000;
 
-    z-index:9999;
+display:flex;
 
-    display:flex;
+justify-content:center;
 
-    flex-direction:column;
+align-items:center;
 
-    align-items:center;
+flex-direction:column;
 
-    justify-content:center;
+z-index:10;
+
+animation:hide 2s forwards;
+
+animation-delay:2s;
+
+}
 
 
-    animation:loaderHide 2s forwards;
+#loader h1{
 
-    animation-delay:2.5s;
+font-size:40px;
+
+letter-spacing:5px;
 
 }
 
 
 
-.loader-title{
-
-    font-size:35px;
-
-    letter-spacing:5px;
-
-    animation:glitch 1s infinite;
-
-}
-
-
-
-.loader-line{
-
-    margin-top:20px;
-
-    width:200px;
-
-    height:3px;
-
-    background:white;
-
-    animation:load 2.5s;
-
-}
-
-
-
-@keyframes load{
-
-from{
-
-width:0;
-
-}
-
-to{
-
-width:200px;
-
-}
-
-}
-
-
-
-@keyframes loaderHide{
+@keyframes hide{
 
 to{
 
@@ -129,146 +89,55 @@ visibility:hidden;
 
 
 
-/* ФОН */
+/* видео фон */
 
 
-#bg-video{
-
-    position:fixed;
-
-    right:0;
-
-    bottom:0;
-
-
-    width:100%;
-
-    height:100%;
-
-
-    object-fit:cover;
-
-
-    z-index:-3;
-
-
-
-    filter:
-
-    blur(15px)
-
-    brightness(55%)
-
-    contrast(110%);
-
-
-
-    transform:scale(1.1);
-
-}
-
-
-
-
-body::after{
-
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-
-    background:
-
-    rgba(0,0,0,.35);
-
-
-    z-index:-2;
-
-}
-
-
-
-
-/* АУРА МЫШКИ */
-
-
-#mouseGlow{
-
-
-position:fixed;
-
-
-width:180px;
-
-height:180px;
-
-
-border-radius:50%;
-
-
-background:white;
-
-
-opacity:.08;
-
-
-filter:blur(40px);
-
-
-pointer-events:none;
-
-
-z-index:-1;
-
-
-}
-
-
-
-
-
-
-/* ПЕРЬЯ */
-
-
-#feathers{
+#bg{
 
 position:fixed;
 
 inset:0;
 
-pointer-events:none;
+width:100%;
 
-z-index:-1;
+height:100%;
+
+object-fit:cover;
+
+z-index:-2;
+
+
+filter:
+
+blur(15px)
+
+brightness(45%);
+
+
+transform:scale(1.1);
 
 }
 
 
 
 
+
+/* перья */
+
+
 .feather{
 
+position:fixed;
 
-position:absolute;
+top:-20px;
 
-
-font-size:22px;
-
+font-size:25px;
 
 color:white;
 
-
-opacity:.7;
-
-
 animation:fall linear infinite;
 
-
-filter:drop-shadow(0 0 8px white);
-
+z-index:-1;
 
 }
 
@@ -277,19 +146,7 @@ filter:drop-shadow(0 0 8px white);
 @keyframes fall{
 
 
-from{
-
-transform:
-
-translateY(-50px)
-
-rotate(0deg);
-
-}
-
-
 to{
-
 
 transform:
 
@@ -297,19 +154,15 @@ translateY(110vh)
 
 rotate(360deg);
 
+}
 
 }
 
 
-}
 
 
 
-
-
-
-
-/* КАРТОЧКА */
+/* карточка */
 
 
 .card{
@@ -317,15 +170,16 @@ rotate(360deg);
 
 width:390px;
 
+max-width:90%;
+
 
 margin:50px auto;
 
 
-padding:35px;
+padding:30px;
 
 
 text-align:center;
-
 
 
 background:
@@ -350,39 +204,7 @@ backdrop-filter:blur(15px);
 
 box-shadow:
 
-0 0 40px rgba(255,255,255,.25);
-
-
-
-animation:appear 1s;
-
-
-
-}
-
-
-
-
-@keyframes appear{
-
-
-from{
-
-opacity:0;
-
-transform:translateY(40px);
-
-}
-
-
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
+0 0 40px white;
 
 
 }
@@ -392,7 +214,7 @@ transform:translateY(0);
 
 
 
-/* АВАТАР */
+/* аватар */
 
 
 .avatar{
@@ -406,21 +228,15 @@ height:120px;
 margin:auto;
 
 
-
 border-radius:50%;
 
 
 overflow:hidden;
 
 
-
 box-shadow:
 
-
-0 0 30px white,
-
-0 0 70px white;
-
+0 0 30px white;
 
 
 }
@@ -444,21 +260,18 @@ object-fit:cover;
 
 
 
-
-
-/* ЗАГОЛОВОК */
+/* glitch */
 
 
 h1{
 
 
-margin-top:20px;
-
+margin:20px;
 
 font-size:35px;
 
 
-animation:glitch 2s infinite;
+animation:glitch 1s infinite;
 
 
 }
@@ -467,13 +280,6 @@ animation:glitch 2s infinite;
 
 
 @keyframes glitch{
-
-
-0%{
-
-text-shadow:none;
-
-}
 
 
 20%{
@@ -487,7 +293,6 @@ text-shadow:
 }
 
 
-
 40%{
 
 text-shadow:
@@ -499,62 +304,23 @@ text-shadow:
 }
 
 
-
-60%{
-
-text-shadow:none;
-
 }
 
 
-
-}
-
-
-
-
-
-
-.nickname{
-
-
-color:#ccc;
-
-
-margin-top:5px;
-
-
-}
-
-
-
-
-
-/* КНОПКИ */
-
+/* кнопки */
 
 .button{
 
-
 display:block;
 
-
 margin-top:18px;
-
 
 padding:15px;
 
 
-
-border-radius:15px;
-
-
-
 color:white;
 
-
 text-decoration:none;
-
 
 
 border:
@@ -562,20 +328,18 @@ border:
 1px solid white;
 
 
+border-radius:15px;
+
 
 background:
 
 rgba(255,255,255,.05);
 
 
-
 transition:.3s;
 
 
-
 }
-
-
 
 
 .button:hover{
@@ -587,33 +351,25 @@ background:white;
 color:black;
 
 
-
 transform:scale(1.05);
-
 
 
 box-shadow:
 
-
-0 0 20px white;
+0 0 30px white;
 
 
 }
 
 
 
-
-
-
-
-
-/* БЛОКИ */
+/* текстовые блоки */
 
 
 .box{
 
 
-margin-top:25px;
+margin-top:20px;
 
 
 padding:20px;
@@ -624,14 +380,12 @@ border-radius:15px;
 
 background:
 
-rgba(255,255,255,.07);
-
+rgba(255,255,255,.08);
 
 
 border:
 
 1px solid rgba(255,255,255,.3);
-
 
 
 line-height:1.5;
@@ -640,37 +394,120 @@ line-height:1.5;
 }
 
 
+
+
+
+/* музыка */
+
+
+.music{
+
+
+position:fixed;
+
+
+right:20px;
+
+
+top:20px;
+
+
+display:flex;
+
+
+gap:10px;
+
+
+align-items:center;
+
+
+padding:12px;
+
+
+border:
+
+1px solid white;
+
+
+border-radius:20px;
+
+
+background:
+
+rgba(255,255,255,.1);
+
+
+backdrop-filter:blur(10px);
+
+
+}
+
+
+#mute{
+
+
+width:45px;
+
+
+height:45px;
+
+
+border-radius:50%;
+
+
+border:none;
+
+
+background:white;
+
+
+font-size:20px;
+
+
+}
+
+
+
+
+#volume{
+
+
+width:100px;
+
+
+}
+
+
+
+
+
+
+</style>
+
+
+</head>
+
+
 <body>
 
 
-<!-- ЗАГРУЗКА -->
+
+<!-- загрузка -->
 
 <div id="loader">
 
-<div class="loader-title">
-
-$ Adapter $
-
-</div>
-
-
-<div class="loader-line"></div>
-
+<h1>$ Adapter $</h1>
 
 </div>
 
 
 
 
+<!-- фон -->
 
-<!-- ВИДЕО ФОН -->
-
-
-<video autoplay muted loop id="bg-video">
-
+<video autoplay muted loop id="bg">
 
 <source src="griffith.mp4" type="video/mp4">
-
 
 </video>
 
@@ -678,45 +515,18 @@ $ Adapter $
 
 
 
-<!-- ПЕРЬЯ -->
-
-
-<div id="feathers"></div>
-
-
-
-
-
-<!-- СВЕЧЕНИЕ МЫШКИ -->
-
-
-<div id="mouseGlow"></div>
-
-
-
-
-
-
-
-<!-- МУЗЫКА -->
-
+<!-- музыка -->
 
 <audio id="music" loop>
 
-
 <source src="angel.mp3" type="audio/mp3">
 
-
 </audio>
-
-
 
 
 <audio id="click">
 
-
 <source src="click.mp3" type="audio/mp3">
-
 
 </audio>
 
@@ -724,29 +534,20 @@ $ Adapter $
 
 
 
+<!-- управление музыкой -->
 
 
-<div class="music-box">
+<div class="music">
 
 
-<button id="muteBtn">
+<button id="mute">
 
 🔊
 
 </button>
 
 
-<input
-
-id="volume"
-
-type="range"
-
-min="0"
-
-max="100"
-
-value="20">
+<input id="volume" type="range" min="0" max="100" value="20">
 
 
 </div>
@@ -757,45 +558,25 @@ value="20">
 
 
 
-
-<!-- ОСНОВНОЙ БЛОК -->
+<!-- сайт -->
 
 
 <div class="card">
 
 
 
-
-
 <div class="avatar">
-
 
 <img src="griffith.png">
 
-
 </div>
-
-
-
 
 
 
 <h1 id="title"></h1>
 
 
-
-
-
-<div class="nickname">
-
-
-@sex2iq
-
-
-</div>
-
-
-
+<p>@sex2iq</p>
 
 
 
@@ -803,26 +584,17 @@ value="20">
 
 <a class="button" href="https://t.me/sex2iq">
 
-
 мой тг >>> @sex2iq
 
-
 </a>
-
-
-
 
 
 
 <a class="button" href="https://t.me/+3D1cwgpDXEo3NDdh">
 
-
 выебоны маня доксеров >>> ВЪЕБ
 
-
 </a>
-
-
 
 
 
@@ -837,39 +609,23 @@ value="20">
 <br><br>
 
 
-
 1. вы нищеебский троль.
 
-
 <br>
-
 
 2. у вас бич профиль.
 
-
 <br>
 
-
-3. вы просите урона (дай дай дай).
-
+3. вы просите урона.
 
 <br>
-
 
 4. у вас бомжарское био доксера.
 
 
-<br>
-
-
-5. у вас бомж юз типо @APECTOBAH_3A_DEAHOH
-
-
 
 </div>
-
-
-
 
 
 
@@ -884,13 +640,8 @@ value="20">
 <br><br>
 
 
-«Что вершит судьбу человечества в этом мире?
+«Что вершит судьбу человечества в этом мире?»
 
-Некое незримое существо или закон,
-подобно Длани Господней парящей над миром?
-
-По крайней мере истинно то,
-что человек не властен даже над своей волей.»
 
 
 </div>
@@ -898,58 +649,40 @@ value="20">
 
 
 
-
-
-
-
-<div class="footer">
-
+<p>
 
 site created 2026
 
-
-<br>
-
-
-© sex2iq
-
-
-</div>
-
-
-
-
+</p>
 
 
 
 </div>
-
-
-
 
 
 <script>
 
-// ПЕЧАТЬ $ Adapter $
 
-const text = "$ Adapter $";
+// ПЕЧАТЬ ТЕКСТА
 
-const title = document.getElementById("title");
+const text="$ Adapter $";
 
-let i = 0;
+const title=document.getElementById("title");
+
+let i=0;
 
 
 function typing(){
 
-    if(i < text.length){
+if(i < text.length){
 
-        title.innerHTML += text[i];
+title.innerHTML += text[i];
 
-        i++;
+i++;
 
-        setTimeout(typing,150);
+setTimeout(typing,150);
 
-    }
+}
 
 }
 
@@ -959,105 +692,59 @@ typing();
 
 
 
-
 // МУЗЫКА
 
+const music=document.getElementById("music");
 
-const music = document.getElementById("music");
+const mute=document.getElementById("mute");
 
-const muteBtn = document.getElementById("muteBtn");
-
-const volume = document.getElementById("volume");
-
+const volume=document.getElementById("volume");
 
 
-music.volume = 0.2;
+music.volume=0.2;
 
 
 
-// попытка запуска
+window.onload=()=>{
 
-window.addEventListener("load",()=>{
-
-    music.play().catch(()=>{
-
-        console.log("автозапуск заблокирован браузером");
-
-    });
-
-});
-
-
-
-
-
-// первый клик запускает если браузер запретил
-
-document.addEventListener("click",()=>{
-
-
-    if(music.paused){
-
-        music.play();
-
-    }
-
-
-},{once:true});
-
-
-
-
-
-
-
-// mute
-
-
-muteBtn.onclick=()=>{
-
-
-    if(music.muted){
-
-
-        music.muted=false;
-
-
-        muteBtn.innerHTML="🔊";
-
-
-    }
-
-    else{
-
-
-        music.muted=true;
-
-
-        muteBtn.innerHTML="🔇";
-
-
-    }
-
+music.play().catch(()=>{});
 
 };
 
 
-
-
-
-
-// громкость
-
+// ГРОМКОСТЬ
 
 volume.oninput=()=>{
 
-
-    music.volume = volume.value / 100;
-
+music.volume = volume.value / 100;
 
 };
 
+
+
+
+// MUTE
+
+mute.onclick=()=>{
+
+
+music.muted = !music.muted;
+
+
+if(music.muted){
+
+mute.innerHTML="🔇";
+
+}
+
+else{
+
+mute.innerHTML="🔊";
+
+}
+
+
+};
 
 
 
@@ -1067,29 +754,28 @@ volume.oninput=()=>{
 // ЗВУК КНОПОК
 
 
-const clickSound = document.getElementById("click");
+const clickSound=document.getElementById("click");
 
 
+document.querySelectorAll(".button").forEach(button=>{
 
-document.querySelectorAll(".button").forEach(btn=>{
 
-
-btn.addEventListener("click",()=>{
+button.addEventListener("click",()=>{
 
 
 clickSound.volume=0.3;
 
 
+clickSound.currentTime=0;
+
+
 clickSound.play();
 
 
-
 });
 
 
 });
-
-
 
 
 
@@ -1097,9 +783,6 @@ clickSound.play();
 
 
 // ПЕРЬЯ
-
-
-const feathers = document.getElementById("feathers");
 
 
 for(let i=0;i<35;i++){
@@ -1114,24 +797,15 @@ feather.className="feather";
 feather.innerHTML="🪽";
 
 
-
 feather.style.left=Math.random()*100+"%";
 
 
 feather.style.animationDuration=
 
-(8+Math.random()*12)+"s";
+(5+Math.random()*10)+"s";
 
 
-
-feather.style.animationDelay=
-
-Math.random()*5+"s";
-
-
-
-feathers.appendChild(feather);
-
+document.body.appendChild(feather);
 
 
 }
@@ -1141,56 +815,25 @@ feathers.appendChild(feather);
 
 
 
-
-
-// СВЕЧЕНИЕ ЗА МЫШКОЙ
-
-
-const glow=document.getElementById("mouseGlow");
-
-
-
-document.addEventListener("mousemove",(e)=>{
-
-
-glow.style.left=e.clientX-90+"px";
-
-
-glow.style.top=e.clientY-90+"px";
-
-
-});
-
-
-
-
-
-
-
-
-
 // СЕКРЕТНЫЙ КЛИК
 
 
-let clicks=0;
-
+let secret=0;
 
 
 title.onclick=()=>{
 
 
-clicks++;
+secret++;
 
 
-
-if(clicks>=5){
+if(secret>=5){
 
 
 title.innerHTML="ACCESS GRANTED";
 
 
-title.style.textShadow="0 0 25px white";
-
+title.style.textShadow="0 0 30px white";
 
 
 }
@@ -1202,8 +845,11 @@ title.style.textShadow="0 0 25px white";
 
 
 
+
 </script>
 
+
 </body>
+
 
 </html>
