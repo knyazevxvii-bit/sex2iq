@@ -705,11 +705,24 @@ music.volume=0.2;
 
 
 
-window.onload=()=>{
+window.addEventListener("load",()=>{
 
-music.play().catch(()=>{});
+music.volume = 0.2;
 
-};
+music.play();
+
+});
+
+
+document.addEventListener("click",()=>{
+
+if(music.paused){
+
+music.play();
+
+}
+
+},{once:true});
 
 
 // ГРОМКОСТЬ
