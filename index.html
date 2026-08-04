@@ -18,18 +18,25 @@ font-family:Arial,sans-serif;
 
 
 body{
+
 background:#000;
+
 color:white;
+
 min-height:100vh;
+
 overflow-x:hidden;
+
 }
 
 
-/* Видео */
+
+/* ФОН */
 
 #bg-video{
 
 position:fixed;
+
 right:0;
 bottom:0;
 
@@ -38,11 +45,19 @@ height:100%;
 
 object-fit:cover;
 
-z-index:-2;
+z-index:-3;
 
-filter:brightness(55%) contrast(110%);
+
+filter:
+blur(40px)
+brightness(50%)
+contrast(110%);
+
+
+transform:scale(1.1);
 
 }
+
 
 
 body::after{
@@ -53,15 +68,77 @@ position:fixed;
 
 inset:0;
 
-background:rgba(0,0,0,.35);
+background:rgba(0,0,0,.25);
 
-z-index:-1;
+z-index:-2;
 
 }
 
 
 
-/* Карточка */
+/* ЧАСТИЦЫ */
+
+#particles{
+
+position:fixed;
+
+inset:0;
+
+z-index:-1;
+
+pointer-events:none;
+
+}
+
+
+
+.particle{
+
+position:absolute;
+
+width:4px;
+
+height:4px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:.7;
+
+box-shadow:
+
+0 0 10px white;
+
+animation:fall linear infinite;
+
+}
+
+
+
+@keyframes fall{
+
+
+from{
+
+transform:translateY(-20px);
+
+}
+
+
+to{
+
+transform:translateY(110vh);
+
+}
+
+
+}
+
+
+
+/* КАРТОЧКА */
+
 
 .card{
 
@@ -71,19 +148,30 @@ margin:50px auto;
 
 padding:35px;
 
+
 text-align:center;
 
-background:rgba(255,255,255,.08);
 
-border:1px solid rgba(255,255,255,.5);
+background:
+
+rgba(255,255,255,.08);
+
+
+border:
+
+1px solid rgba(255,255,255,.5);
+
 
 border-radius:25px;
 
+
 backdrop-filter:blur(15px);
+
 
 box-shadow:
 
 0 0 40px rgba(255,255,255,.25);
+
 
 animation:show 1s;
 
@@ -93,6 +181,7 @@ animation:show 1s;
 
 @keyframes show{
 
+
 from{
 
 opacity:0;
@@ -100,6 +189,7 @@ opacity:0;
 transform:translateY(50px);
 
 }
+
 
 to{
 
@@ -109,13 +199,16 @@ transform:translateY(0);
 
 }
 
+
 }
 
 
 
-/* Аватар */
+/* АВАТАР */
+
 
 .avatar{
+
 
 width:110px;
 
@@ -123,27 +216,36 @@ height:110px;
 
 margin:auto;
 
+
 border-radius:50%;
+
 
 background:white;
 
+
 color:black;
 
+
 display:flex;
+
 
 align-items:center;
 
 justify-content:center;
 
+
 font-size:45px;
 
 font-weight:bold;
 
+
 box-shadow:
+
 
 0 0 25px white,
 
 0 0 70px white;
+
 
 }
 
@@ -161,37 +263,51 @@ font-size:35px;
 
 .nickname{
 
-color:#ccc;
-
 margin-top:5px;
+
+color:#ccc;
 
 }
 
 
 
 
-/* Кнопки */
+/* КНОПКИ */
 
 
 .button{
 
+
 display:block;
+
 
 margin-top:18px;
 
+
 padding:15px;
+
 
 border-radius:15px;
 
+
 text-decoration:none;
+
 
 color:white;
 
-border:1px solid white;
 
-background:rgba(255,255,255,.05);
+border:
+
+1px solid white;
+
+
+background:
+
+rgba(255,255,255,.05);
+
 
 transition:.3s;
+
 
 }
 
@@ -199,11 +315,15 @@ transition:.3s;
 
 .button:hover{
 
+
 background:white;
+
 
 color:black;
 
+
 transform:scale(1.05);
+
 
 box-shadow:
 
@@ -211,133 +331,120 @@ box-shadow:
 
 0 0 50px white;
 
+
 }
 
 
+
+
+/* ТЕКСТ */
 
 
 .box{
 
+
 margin-top:25px;
+
 
 padding:20px;
 
+
 border-radius:15px;
 
-background:rgba(255,255,255,.07);
 
-border:1px solid rgba(255,255,255,.3);
+background:
+
+rgba(255,255,255,.07);
+
+
+border:
+
+1px solid rgba(255,255,255,.3);
+
 
 line-height:1.5;
 
+
 font-size:14px;
 
-}
-
-
-
-
-/* Spotify */
-
-
-.spotify{
-
-margin-top:25px;
-
-border-radius:15px;
-
-overflow:hidden;
-
-box-shadow:
-
-0 0 25px white;
 
 }
 
 
 
-/* Музыка */
+/* МУЗЫКА */
 
 
-.music-box{
+#musicBtn{
+
 
 position:fixed;
 
+
 bottom:25px;
 
-left:50%;
 
-transform:translateX(-50%);
+right:25px;
 
-display:flex;
 
-gap:15px;
+width:55px;
 
-align-items:center;
 
-padding:12px 20px;
+height:55px;
 
-background:rgba(255,255,255,.1);
 
-border:1px solid white;
+border-radius:50%;
 
-border-radius:20px;
 
-backdrop-filter:blur(10px);
+background:white;
+
+
+color:black;
+
+
+border:none;
+
+
+font-size:25px;
+
+
+cursor:pointer;
+
 
 box-shadow:
 
 0 0 25px white;
 
-}
-
-
-
-.music-box button{
-
-background:white;
-
-color:black;
-
-border:none;
-
-padding:10px 20px;
-
-border-radius:15px;
-
-font-weight:bold;
-
-cursor:pointer;
 
 }
 
-
-
-.music-box input{
-
-accent-color:white;
-
-}
 
 
 
 .footer{
 
+
 margin-top:25px;
+
 
 color:#aaa;
 
+
 font-size:12px;
+
 
 }
 
 
+
 </style>
+
 
 </head>
 
 
 <body>
+
 
 
 <video autoplay muted loop id="bg-video">
@@ -348,7 +455,11 @@ font-size:12px;
 
 
 
-<audio id="music" loop>
+<div id="particles"></div>
+
+
+
+<audio id="music" autoplay loop>
 
 <source src="angel.mp3" type="audio/mp3">
 
@@ -356,57 +467,60 @@ font-size:12px;
 
 
 
+<button id="musicBtn">
+
+🎵
+
+</button>
+
+
+
+
 <div class="card">
 
 
+
 <div class="avatar">
+
 S
+
 </div>
+
 
 
 <h1>
+
 $ Adapter $
+
 </h1>
 
 
+
 <div class="nickname">
+
 @sex2iq
+
 </div>
+
+
 
 
 
 <a class="button" href="https://t.me/sex2iq" target="_blank">
+
 мой тг >>> @sex2iq
+
 </a>
+
 
 
 
 <a class="button" href="https://t.me/+3D1cwgpDXEo3NDdh" target="_blank">
+
 выебоны маня доксеров >>> ВЪЕБ
+
 </a>
 
-
-
-
-<div class="spotify">
-
-<iframe 
-
-style="border-radius:12px"
-
-src="https://open.spotify.com/embed/playlist/4xSXqo0GxFRjYtacvNbGqM"
-
-width="100%"
-
-height="152"
-
-frameBorder="0"
-
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-
-</iframe>
-
-</div>
 
 
 
@@ -420,6 +534,7 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 
 
 «Что вершит судьбу человечества в этом мире?
+
 Некое незримое существо или закон,
 подобно Длани Господней парящей над миром?
 
@@ -428,6 +543,8 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 
 
 </div>
+
+
 
 
 
@@ -463,32 +580,13 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 
 
 
+
 <div class="footer">
+
 © 2026 sex2iq
-</div>
-
 
 </div>
 
-
-
-
-<div class="music-box">
-
-
-<button id="play">
-
-▶ PLAY
-
-</button>
-
-
-<input 
-type="range"
-min="0"
-max="100"
-value="50"
-id="volume">
 
 </div>
 
@@ -500,42 +598,96 @@ id="volume">
 
 let music=document.getElementById("music");
 
-let btn=document.getElementById("play");
-
-let volume=document.getElementById("volume");
-
-
-music.volume=0.5;
+let btn=document.getElementById("musicBtn");
 
 
 
-btn.onclick=function(){
+music.volume=0.4;
+
+
+
+window.onload=()=>{
+
+
+music.play().catch(()=>{
+
+});
+
+
+};
+
+
+
+btn.onclick=()=>{
+
 
 if(music.paused){
 
+
 music.play();
 
-btn.innerHTML="⏸ PAUSE";
+
+btn.innerHTML="⏸";
+
 
 }
 
 else{
 
+
 music.pause();
 
-btn.innerHTML="▶ PLAY";
+
+btn.innerHTML="🎵";
+
 
 }
 
+
+};
+
+
+
+
+
+// частицы
+
+
+for(let i=0;i<80;i++){
+
+
+let p=document.createElement("div");
+
+
+p.className="particle";
+
+
+
+p.style.left=Math.random()*100+"%";
+
+
+p.style.animationDuration=
+
+(5+Math.random()*10)+"s";
+
+
+
+p.style.animationDelay=
+
+Math.random()*5+"s";
+
+
+
+document
+
+.getElementById("particles")
+
+.appendChild(p);
+
+
+
 }
 
-
-
-volume.oninput=function(){
-
-music.volume=this.value/100;
-
-}
 
 
 </script>
@@ -543,4 +695,5 @@ music.volume=this.value/100;
 
 
 </body>
+
 </html>
