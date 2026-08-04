@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,51 +11,51 @@
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    cursor:url("cursor.cur"), auto;
 }
 
 
 body{
 
-background:#000;
+    background:#000;
+    color:white;
 
-color:white;
+    min-height:100vh;
 
-min-height:100vh;
+    overflow-x:hidden;
 
-overflow-x:hidden;
+    font-family:Arial, sans-serif;
 
 }
-
 
 
 /* ФОН */
 
 #bg-video{
 
-position:fixed;
+    position:fixed;
 
-right:0;
-bottom:0;
+    right:0;
+    bottom:0;
 
-width:100%;
-height:100%;
+    width:100%;
+    height:100%;
 
-object-fit:cover;
+    object-fit:cover;
 
-z-index:-3;
-
-
-filter:
-blur(40px)
-brightness(50%)
-contrast(110%);
+    z-index:-3;
 
 
-transform:scale(1.1);
+    filter:
+    blur(15px)
+    brightness(55%)
+    contrast(110%);
+
+
+    transform:scale(1.1);
 
 }
 
@@ -62,15 +63,15 @@ transform:scale(1.1);
 
 body::after{
 
-content:"";
+    content:"";
 
-position:fixed;
+    position:fixed;
 
-inset:0;
+    inset:0;
 
-background:rgba(0,0,0,.25);
+    background:rgba(0,0,0,.25);
 
-z-index:-2;
+    z-index:-2;
 
 }
 
@@ -80,13 +81,13 @@ z-index:-2;
 
 #particles{
 
-position:fixed;
+    position:fixed;
 
-inset:0;
+    inset:0;
 
-z-index:-1;
+    pointer-events:none;
 
-pointer-events:none;
+    z-index:-1;
 
 }
 
@@ -94,23 +95,26 @@ pointer-events:none;
 
 .particle{
 
-position:absolute;
+    position:absolute;
 
-width:4px;
+    width:4px;
 
-height:4px;
+    height:4px;
 
-background:white;
+    background:white;
 
-border-radius:50%;
+    border-radius:50%;
 
-opacity:.7;
 
-box-shadow:
+    opacity:.7;
 
-0 0 10px white;
 
-animation:fall linear infinite;
+    box-shadow:
+
+    0 0 10px white;
+
+
+    animation:fall linear infinite;
 
 }
 
@@ -119,19 +123,18 @@ animation:fall linear infinite;
 @keyframes fall{
 
 
-from{
+    from{
 
-transform:translateY(-20px);
+        transform:translateY(-20px);
 
-}
+    }
 
 
-to{
+    to{
 
-transform:translateY(110vh);
+        transform:translateY(110vh);
 
-}
-
+    }
 
 }
 
@@ -142,63 +145,63 @@ transform:translateY(110vh);
 
 .card{
 
-width:390px;
+    width:390px;
 
-margin:50px auto;
+    margin:50px auto;
 
-padding:35px;
-
-
-text-align:center;
+    padding:35px;
 
 
-background:
-
-rgba(255,255,255,.08);
+    text-align:center;
 
 
-border:
+    background:
 
-1px solid rgba(255,255,255,.5);
-
-
-border-radius:25px;
+    rgba(255,255,255,.08);
 
 
-backdrop-filter:blur(15px);
+    border:
+
+    1px solid rgba(255,255,255,.5);
 
 
-box-shadow:
-
-0 0 40px rgba(255,255,255,.25);
+    border-radius:25px;
 
 
-animation:show 1s;
+    backdrop-filter:blur(15px);
+
+
+    box-shadow:
+
+    0 0 40px rgba(255,255,255,.25);
+
+
+    animation:show 1s;
 
 }
+
 
 
 
 @keyframes show{
 
 
-from{
+    from{
 
-opacity:0;
+        opacity:0;
 
-transform:translateY(50px);
+        transform:translateY(50px);
 
-}
+    }
 
 
-to{
+    to{
 
-opacity:1;
+        opacity:1;
 
-transform:translateY(0);
+        transform:translateY(0);
 
-}
-
+    }
 
 }
 
@@ -210,64 +213,121 @@ transform:translateY(0);
 .avatar{
 
 
-width:110px;
+    width:110px;
 
-height:110px;
-
-margin:auto;
+    height:110px;
 
 
-border-radius:50%;
+    margin:auto;
 
 
-background:white;
+    border-radius:50%;
 
 
-color:black;
+    background:white;
 
 
-display:flex;
+    color:black;
 
 
-align-items:center;
-
-justify-content:center;
+    display:flex;
 
 
-font-size:45px;
+    justify-content:center;
 
-font-weight:bold;
-
-
-box-shadow:
+    align-items:center;
 
 
-0 0 25px white,
+    font-size:45px;
 
-0 0 70px white;
 
+    font-weight:bold;
+
+
+
+    box-shadow:
+
+
+    0 0 25px white,
+
+
+    0 0 70px white;
 
 }
 
+
+
+
+/* ЗАГОЛОВОК */
 
 
 h1{
 
-margin-top:20px;
+    margin-top:20px;
 
-font-size:35px;
+    font-size:35px;
+
+
+    animation:glitch 2s infinite;
 
 }
 
+
+
+@keyframes glitch{
+
+
+    0%{
+
+        text-shadow:none;
+
+    }
+
+
+    20%{
+
+        text-shadow:
+
+        3px 0 white,
+
+        -3px 0 gray;
+
+    }
+
+
+    40%{
+
+        text-shadow:
+
+        -3px 0 white,
+
+        3px 0 black;
+
+    }
+
+
+    60%{
+
+        text-shadow:none;
+
+    }
+
+
+}
+
+
+
+/* НИК */
 
 
 .nickname{
 
-margin-top:5px;
+    margin-top:5px;
 
-color:#ccc;
+    color:#ccc;
 
 }
+
 
 
 
@@ -278,58 +338,61 @@ color:#ccc;
 .button{
 
 
-display:block;
+    display:block;
 
 
-margin-top:18px;
+    margin-top:18px;
 
 
-padding:15px;
+    padding:15px;
 
 
-border-radius:15px;
+    border-radius:15px;
 
 
-text-decoration:none;
+    text-decoration:none;
 
 
-color:white;
+    color:white;
 
 
-border:
+    border:
 
-1px solid white;
-
-
-background:
-
-rgba(255,255,255,.05);
+    1px solid white;
 
 
-transition:.3s;
+    background:
 
+    rgba(255,255,255,.05);
+
+
+
+    transition:.3s;
 
 }
+
 
 
 
 .button:hover{
 
 
-background:white;
+    background:white;
 
 
-color:black;
+    color:black;
 
 
-transform:scale(1.05);
+    transform:scale(1.05);
 
 
-box-shadow:
+    box-shadow:
 
-0 0 20px white,
 
-0 0 50px white;
+    0 0 20px white,
+
+
+    0 0 50px white;
 
 
 }
@@ -337,86 +400,143 @@ box-shadow:
 
 
 
-/* ТЕКСТ */
+
+/* БЛОКИ ТЕКСТА */
 
 
 .box{
 
 
-margin-top:25px;
+    margin-top:25px;
 
 
-padding:20px;
+    padding:20px;
 
 
-border-radius:15px;
+    border-radius:15px;
 
 
-background:
 
-rgba(255,255,255,.07);
+    background:
 
-
-border:
-
-1px solid rgba(255,255,255,.3);
+    rgba(255,255,255,.07);
 
 
-line-height:1.5;
+
+    border:
+
+    1px solid rgba(255,255,255,.3);
 
 
-font-size:14px;
 
+    line-height:1.5;
+
+
+    font-size:14px;
 
 }
+
+
 
 
 
 /* МУЗЫКА */
 
+.music-box{
+
+
+    position:fixed;
+
+
+    top:25px;
+
+
+    right:25px;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+
+    padding:12px 18px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid white;
+
+
+    border-radius:20px;
+
+
+
+    backdrop-filter:blur(10px);
+
+
+
+    box-shadow:
+
+    0 0 25px white;
+
+}
+
+
 
 #musicBtn{
 
 
-position:fixed;
+    width:45px;
 
 
-bottom:25px;
+    height:45px;
 
 
-right:25px;
+
+    border-radius:50%;
 
 
-width:55px;
+    border:none;
 
 
-height:55px;
+    background:white;
 
 
-border-radius:50%;
+    color:black;
 
 
-background:white;
+    font-size:20px;
 
 
-color:black;
 
-
-border:none;
-
-
-font-size:25px;
-
-
-cursor:pointer;
-
-
-box-shadow:
-
-0 0 25px white;
-
+    cursor:pointer;
 
 }
+
+
+
+
+#volume{
+
+
+    width:100px;
+
+
+    accent-color:white;
+
+}
+
 
 
 
@@ -424,27 +544,22 @@ box-shadow:
 .footer{
 
 
-margin-top:25px;
+    margin-top:25px;
 
 
-color:#aaa;
+    color:#aaa;
 
 
-font-size:12px;
-
+    font-size:12px;
 
 }
 
 
-
 </style>
-
 
 </head>
 
-
 <body>
-
 
 
 <video autoplay muted loop id="bg-video">
@@ -459,12 +574,23 @@ font-size:12px;
 
 
 
-<audio id="music" autoplay loop>
+<audio id="music" loop>
 
 <source src="angel.mp3" type="audio/mp3">
 
 </audio>
 
+
+
+<audio id="click">
+
+<source src="click.mp3" type="audio/mp3">
+
+</audio>
+
+
+
+<div class="music-box">
 
 
 <button id="musicBtn">
@@ -474,10 +600,20 @@ font-size:12px;
 </button>
 
 
+<input 
+type="range"
+id="volume"
+min="0"
+max="100"
+value="20">
+
+</div>
+
+
+
 
 
 <div class="card">
-
 
 
 <div class="avatar">
@@ -488,11 +624,8 @@ S
 
 
 
-<h1>
 
-$ Adapter $
-
-</h1>
+<h1 id="title"></h1>
 
 
 
@@ -506,7 +639,7 @@ $ Adapter $
 
 
 
-<a class="button" href="https://t.me/sex2iq" target="_blank">
+<a class="button" href="https://t.me/sex2iq">
 
 мой тг >>> @sex2iq
 
@@ -515,34 +648,12 @@ $ Adapter $
 
 
 
-<a class="button" href="https://t.me/+3D1cwgpDXEo3NDdh" target="_blank">
+
+<a class="button" href="https://t.me/+3D1cwgpDXEo3NDdh">
 
 выебоны маня доксеров >>> ВЪЕБ
 
 </a>
-
-
-
-
-
-<div class="box">
-
-
-| | | цитата | | |
-
-<br><br>
-
-
-«Что вершит судьбу человечества в этом мире?
-
-Некое незримое существо или закон,
-подобно Длани Господней парящей над миром?
-
-По крайней мере истинно то,
-что человек не властен даже над своей волей.»
-
-
-</div>
 
 
 
@@ -581,14 +692,47 @@ $ Adapter $
 
 
 
+
+<div class="box">
+
+
+| | | цитата | | |
+
+
+<br><br>
+
+
+«Что вершит судьбу человечества в этом мире?
+
+Некое незримое существо или закон,
+подобно Длани Господней парящей над миром?
+
+По крайней мере истинно то,
+что человек не властен даже над своей волей.»
+
+
+</div>
+
+
+
+
+
 <div class="footer">
 
-© 2026 sex2iq
+
+site created 2026
+
+<br>
+
+© sex2iq
+
 
 </div>
 
 
+
 </div>
+
 
 
 
@@ -596,25 +740,82 @@ $ Adapter $
 <script>
 
 
+// ТЕКСТ ПО БУКВАМ
+
+
+const text="$ Adapter $";
+
+const title=document.getElementById("title");
+
+
+let index=0;
+
+
+
+function typing(){
+
+
+if(index < text.length){
+
+
+title.innerHTML += text[index];
+
+
+index++;
+
+
+setTimeout(typing,150);
+
+
+}
+
+
+}
+
+
+typing();
+
+
+
+
+
+
+// МУЗЫКА
+
+
 let music=document.getElementById("music");
 
 let btn=document.getElementById("musicBtn");
 
-
-
-music.volume=0.4;
+let volume=document.getElementById("volume");
 
 
 
-window.onload=()=>{
+music.volume=0.2;
 
 
-music.play().catch(()=>{
+
+window.addEventListener("load",()=>{
+
+
+music.play().then(()=>{
+
+
+btn.innerHTML="⏸";
+
+
+}).catch(()=>{
+
+
+btn.innerHTML="🎵";
+
 
 });
 
 
-};
+});
+
+
 
 
 
@@ -650,10 +851,54 @@ btn.innerHTML="🎵";
 
 
 
-// частицы
+volume.oninput=()=>{
+
+
+music.volume=volume.value/100;
+
+
+};
+
+
+
+
+
+
+
+// ЗВУК КЛИКОВ
+
+
+let click=document.getElementById("click");
+
+
+
+document.querySelectorAll(".button").forEach(button=>{
+
+
+button.addEventListener("click",()=>{
+
+
+click.volume=0.3;
+
+
+click.play();
+
+
+});
+
+
+});
+
+
+
+
+
+
+// ЧАСТИЦЫ
 
 
 for(let i=0;i<80;i++){
+
 
 
 let p=document.createElement("div");
@@ -664,6 +909,7 @@ p.className="particle";
 
 
 p.style.left=Math.random()*100+"%";
+
 
 
 p.style.animationDuration=
@@ -691,7 +937,6 @@ document
 
 
 </script>
-
 
 
 </body>
