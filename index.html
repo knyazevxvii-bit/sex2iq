@@ -125,15 +125,21 @@ transform:scale(1.1);
 /* перья */
 
 
-.feather{
+.particle{
 
 position:fixed;
 
-top:-20px;
+top:-10px;
 
-font-size:25px;
+width:5px;
 
-color:white;
+height:5px;
+
+background:white;
+
+border-radius:50%;
+
+box-shadow:0 0 10px white;
 
 animation:fall linear infinite;
 
@@ -142,17 +148,29 @@ z-index:-1;
 }
 
 
-
 @keyframes fall{
+
+from{
+
+transform:translateY(-20px);
+
+opacity:0;
+
+}
+
+
+50%{
+
+opacity:1;
+
+}
 
 
 to{
 
-transform:
+transform:translateY(110vh);
 
-translateY(110vh)
-
-rotate(360deg);
+opacity:0;
 
 }
 
@@ -798,28 +816,24 @@ clickSound.play();
 // ПЕРЬЯ
 
 
-for(let i=0;i<35;i++){
+for(let i=0;i<60;i++){
+
+let p=document.createElement("div");
+
+p.className="particle";
 
 
-let feather=document.createElement("div");
+p.style.left=Math.random()*100+"%";
 
-
-feather.className="feather";
-
-
-feather.innerHTML="🪽";
-
-
-feather.style.left=Math.random()*100+"%";
-
-
-feather.style.animationDuration=
-
+p.style.animationDuration=
 (5+Math.random()*10)+"s";
 
 
-document.body.appendChild(feather);
+p.style.animationDelay=
+Math.random()*5+"s";
 
+
+document.body.appendChild(p);
 
 }
 
