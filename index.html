@@ -8,7 +8,10 @@
 
 <title>$ Adapter $</title>
 
+
 <style>
+
+/* ОСНОВА */
 
 *{
     margin:0;
@@ -21,38 +24,143 @@
 body{
 
     background:#000;
+
     color:white;
+
+    font-family:Arial, sans-serif;
 
     min-height:100vh;
 
     overflow-x:hidden;
 
-    font-family:Arial, sans-serif;
+}
+
+
+
+/* ЭКРАН ЗАГРУЗКИ */
+
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000;
+
+    z-index:9999;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    animation:loaderHide 2s forwards;
+
+    animation-delay:2.5s;
 
 }
 
 
+
+.loader-title{
+
+    font-size:35px;
+
+    letter-spacing:5px;
+
+    animation:glitch 1s infinite;
+
+}
+
+
+
+.loader-line{
+
+    margin-top:20px;
+
+    width:200px;
+
+    height:3px;
+
+    background:white;
+
+    animation:load 2.5s;
+
+}
+
+
+
+@keyframes load{
+
+from{
+
+width:0;
+
+}
+
+to{
+
+width:200px;
+
+}
+
+}
+
+
+
+@keyframes loaderHide{
+
+to{
+
+opacity:0;
+
+visibility:hidden;
+
+}
+
+}
+
+
+
+
+
 /* ФОН */
+
 
 #bg-video{
 
     position:fixed;
 
     right:0;
+
     bottom:0;
 
+
     width:100%;
+
     height:100%;
 
+
     object-fit:cover;
+
 
     z-index:-3;
 
 
+
     filter:
+
     blur(15px)
+
     brightness(55%)
+
     contrast(110%);
+
 
 
     transform:scale(1.1);
@@ -61,7 +169,9 @@ body{
 
 
 
+
 body::after{
+
 
     content:"";
 
@@ -69,7 +179,11 @@ body::after{
 
     inset:0;
 
-    background:rgba(0,0,0,.25);
+
+    background:
+
+    rgba(0,0,0,.35);
+
 
     z-index:-2;
 
@@ -77,44 +191,84 @@ body::after{
 
 
 
-/* ЧАСТИЦЫ */
 
-#particles{
+/* АУРА МЫШКИ */
 
-    position:fixed;
 
-    inset:0;
+#mouseGlow{
 
-    pointer-events:none;
 
-    z-index:-1;
+position:fixed;
+
+
+width:180px;
+
+height:180px;
+
+
+border-radius:50%;
+
+
+background:white;
+
+
+opacity:.08;
+
+
+filter:blur(40px);
+
+
+pointer-events:none;
+
+
+z-index:-1;
+
 
 }
 
 
 
-.particle{
-
-    position:absolute;
-
-    width:4px;
-
-    height:4px;
-
-    background:white;
-
-    border-radius:50%;
 
 
-    opacity:.7;
+
+/* ПЕРЬЯ */
 
 
-    box-shadow:
+#feathers{
 
-    0 0 10px white;
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:-1;
+
+}
 
 
-    animation:fall linear infinite;
+
+
+.feather{
+
+
+position:absolute;
+
+
+font-size:22px;
+
+
+color:white;
+
+
+opacity:.7;
+
+
+animation:fall linear infinite;
+
+
+filter:drop-shadow(0 0 8px white);
+
 
 }
 
@@ -123,20 +277,35 @@ body::after{
 @keyframes fall{
 
 
-    from{
+from{
 
-        transform:translateY(-20px);
+transform:
 
-    }
+translateY(-50px)
 
-
-    to{
-
-        transform:translateY(110vh);
-
-    }
+rotate(0deg);
 
 }
+
+
+to{
+
+
+transform:
+
+translateY(110vh)
+
+rotate(360deg);
+
+
+}
+
+
+}
+
+
+
+
 
 
 
@@ -145,65 +314,81 @@ body::after{
 
 .card{
 
-    width:390px;
 
-    margin:50px auto;
-
-    padding:35px;
+width:390px;
 
 
-    text-align:center;
+margin:50px auto;
 
 
-    background:
-
-    rgba(255,255,255,.08);
+padding:35px;
 
 
-    border:
-
-    1px solid rgba(255,255,255,.5);
+text-align:center;
 
 
-    border-radius:25px;
+
+background:
+
+rgba(255,255,255,.08);
 
 
-    backdrop-filter:blur(15px);
+
+border:
+
+1px solid rgba(255,255,255,.5);
 
 
-    box-shadow:
 
-    0 0 40px rgba(255,255,255,.25);
+border-radius:25px;
 
 
-    animation:show 1s;
+
+backdrop-filter:blur(15px);
+
+
+
+box-shadow:
+
+0 0 40px rgba(255,255,255,.25);
+
+
+
+animation:appear 1s;
+
+
+
+}
+
+
+
+
+@keyframes appear{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
 
 }
 
 
 
+to{
 
-@keyframes show{
+opacity:1;
 
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(50px);
-
-    }
-
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
+transform:translateY(0);
 
 }
+
+
+}
+
+
+
 
 
 
@@ -213,47 +398,50 @@ body::after{
 .avatar{
 
 
-    width:110px;
+width:120px;
 
-    height:110px;
-
-
-    margin:auto;
+height:120px;
 
 
-    border-radius:50%;
-
-
-    background:white;
-
-
-    color:black;
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-    align-items:center;
-
-
-    font-size:45px;
-
-
-    font-weight:bold;
+margin:auto;
 
 
 
-    box-shadow:
+border-radius:50%;
 
 
-    0 0 25px white,
+overflow:hidden;
 
 
-    0 0 70px white;
+
+box-shadow:
+
+
+0 0 30px white,
+
+0 0 70px white;
+
+
 
 }
+
+
+
+.avatar img{
+
+
+width:100%;
+
+height:100%;
+
+
+object-fit:cover;
+
+
+}
+
+
+
 
 
 
@@ -263,68 +451,78 @@ body::after{
 
 h1{
 
-    margin-top:20px;
 
-    font-size:35px;
+margin-top:20px;
 
 
-    animation:glitch 2s infinite;
+font-size:35px;
+
+
+animation:glitch 2s infinite;
+
 
 }
+
 
 
 
 @keyframes glitch{
 
 
-    0%{
+0%{
 
-        text-shadow:none;
+text-shadow:none;
 
-    }
-
-
-    20%{
-
-        text-shadow:
-
-        3px 0 white,
-
-        -3px 0 gray;
-
-    }
+}
 
 
-    40%{
+20%{
 
-        text-shadow:
+text-shadow:
 
-        -3px 0 white,
+3px 0 white,
 
-        3px 0 black;
+-3px 0 gray;
 
-    }
+}
 
 
-    60%{
 
-        text-shadow:none;
+40%{
 
-    }
+text-shadow:
+
+-3px 0 white,
+
+3px 0 black;
+
+}
+
+
+
+60%{
+
+text-shadow:none;
+
+}
+
 
 
 }
 
 
 
-/* НИК */
+
 
 
 .nickname{
 
-    margin-top:5px;
 
-    color:#ccc;
+color:#ccc;
+
+
+margin-top:5px;
+
 
 }
 
@@ -338,36 +536,42 @@ h1{
 .button{
 
 
-    display:block;
+display:block;
 
 
-    margin-top:18px;
+margin-top:18px;
 
 
-    padding:15px;
-
-
-    border-radius:15px;
-
-
-    text-decoration:none;
-
-
-    color:white;
-
-
-    border:
-
-    1px solid white;
-
-
-    background:
-
-    rgba(255,255,255,.05);
+padding:15px;
 
 
 
-    transition:.3s;
+border-radius:15px;
+
+
+
+color:white;
+
+
+text-decoration:none;
+
+
+
+border:
+
+1px solid white;
+
+
+
+background:
+
+rgba(255,255,255,.05);
+
+
+
+transition:.3s;
+
+
 
 }
 
@@ -377,22 +581,21 @@ h1{
 .button:hover{
 
 
-    background:white;
+background:white;
 
 
-    color:black;
+color:black;
 
 
-    transform:scale(1.05);
+
+transform:scale(1.05);
 
 
-    box-shadow:
+
+box-shadow:
 
 
-    0 0 20px white,
-
-
-    0 0 50px white;
+0 0 20px white;
 
 
 }
@@ -401,226 +604,178 @@ h1{
 
 
 
-/* БЛОКИ ТЕКСТА */
+
+
+
+/* БЛОКИ */
 
 
 .box{
 
 
-    margin-top:25px;
+margin-top:25px;
 
 
-    padding:20px;
+padding:20px;
 
 
-    border-radius:15px;
+border-radius:15px;
 
 
+background:
 
-    background:
-
-    rgba(255,255,255,.07);
-
-
-
-    border:
-
-    1px solid rgba(255,255,255,.3);
+rgba(255,255,255,.07);
 
 
 
-    line-height:1.5;
+border:
+
+1px solid rgba(255,255,255,.3);
 
 
-    font-size:14px;
+
+line-height:1.5;
+
 
 }
 
-
-
-
-
-/* МУЗЫКА */
-
-.music-box{
-
-
-    position:fixed;
-
-
-    top:25px;
-
-
-    right:25px;
-
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:12px;
-
-
-
-    padding:12px 18px;
-
-
-    background:
-
-    rgba(255,255,255,.08);
-
-
-    border:
-
-    1px solid white;
-
-
-    border-radius:20px;
-
-
-
-    backdrop-filter:blur(10px);
-
-
-
-    box-shadow:
-
-    0 0 25px white;
-
-}
-
-
-
-#musicBtn{
-
-
-    width:45px;
-
-
-    height:45px;
-
-
-
-    border-radius:50%;
-
-
-    border:none;
-
-
-    background:white;
-
-
-    color:black;
-
-
-    font-size:20px;
-
-
-
-    cursor:pointer;
-
-}
-
-
-
-
-#volume{
-
-
-    width:100px;
-
-
-    accent-color:white;
-
-}
-
-
-
-
-
-.footer{
-
-
-    margin-top:25px;
-
-
-    color:#aaa;
-
-
-    font-size:12px;
-
-}
-
-
-</style>
-
-</head>
 
 <body>
 
 
+<!-- ЗАГРУЗКА -->
+
+<div id="loader">
+
+<div class="loader-title">
+
+$ Adapter $
+
+</div>
+
+
+<div class="loader-line"></div>
+
+
+</div>
+
+
+
+
+
+<!-- ВИДЕО ФОН -->
+
+
 <video autoplay muted loop id="bg-video">
 
+
 <source src="griffith.mp4" type="video/mp4">
+
 
 </video>
 
 
 
-<div id="particles"></div>
 
+
+<!-- ПЕРЬЯ -->
+
+
+<div id="feathers"></div>
+
+
+
+
+
+<!-- СВЕЧЕНИЕ МЫШКИ -->
+
+
+<div id="mouseGlow"></div>
+
+
+
+
+
+
+
+<!-- МУЗЫКА -->
 
 
 <audio id="music" loop>
 
+
 <source src="angel.mp3" type="audio/mp3">
 
+
 </audio>
+
 
 
 
 <audio id="click">
 
+
 <source src="click.mp3" type="audio/mp3">
 
+
 </audio>
+
+
+
+
 
 
 
 <div class="music-box">
 
 
-<button id="musicBtn">
+<button id="muteBtn">
 
-🎵
+🔊
 
 </button>
 
 
-<input 
-type="range"
+<input
+
 id="volume"
+
+type="range"
+
 min="0"
+
 max="100"
+
 value="20">
+
 
 </div>
 
 
 
+
+
+
+
+
+<!-- ОСНОВНОЙ БЛОК -->
 
 
 <div class="card">
 
 
+
+
+
 <div class="avatar">
 
-S
+
+<img src="griffith.png">
+
 
 </div>
+
+
 
 
 
@@ -629,9 +784,13 @@ S
 
 
 
+
+
 <div class="nickname">
 
+
 @sex2iq
+
 
 </div>
 
@@ -639,11 +798,17 @@ S
 
 
 
+
+
+
 <a class="button" href="https://t.me/sex2iq">
+
 
 мой тг >>> @sex2iq
 
+
 </a>
+
 
 
 
@@ -651,9 +816,13 @@ S
 
 <a class="button" href="https://t.me/+3D1cwgpDXEo3NDdh">
 
+
 выебоны маня доксеров >>> ВЪЕБ
 
+
 </a>
+
+
 
 
 
@@ -668,26 +837,39 @@ S
 <br><br>
 
 
+
 1. вы нищеебский троль.
 
+
 <br>
+
 
 2. у вас бич профиль.
 
+
 <br>
+
 
 3. вы просите урона (дай дай дай).
 
+
 <br>
+
 
 4. у вас бомжарское био доксера.
 
+
 <br>
+
 
 5. у вас бомж юз типо @APECTOBAH_3A_DEAHOH
 
 
+
 </div>
+
+
+
 
 
 
@@ -717,17 +899,26 @@ S
 
 
 
+
+
+
 <div class="footer">
 
 
 site created 2026
 
+
 <br>
+
 
 © sex2iq
 
 
 </div>
+
+
+
+
 
 
 
@@ -739,36 +930,26 @@ site created 2026
 
 <script>
 
+// ПЕЧАТЬ $ Adapter $
 
-// ТЕКСТ ПО БУКВАМ
+const text = "$ Adapter $";
 
+const title = document.getElementById("title");
 
-const text="$ Adapter $";
-
-const title=document.getElementById("title");
-
-
-let index=0;
-
+let i = 0;
 
 
 function typing(){
 
+    if(i < text.length){
 
-if(index < text.length){
+        title.innerHTML += text[i];
 
+        i++;
 
-title.innerHTML += text[index];
+        setTimeout(typing,150);
 
-
-index++;
-
-
-setTimeout(typing,150);
-
-
-}
-
+    }
 
 }
 
@@ -779,39 +960,30 @@ typing();
 
 
 
-
 // МУЗЫКА
 
 
-let music=document.getElementById("music");
+const music = document.getElementById("music");
 
-let btn=document.getElementById("musicBtn");
+const muteBtn = document.getElementById("muteBtn");
 
-let volume=document.getElementById("volume");
-
-
-
-music.volume=0.2;
+const volume = document.getElementById("volume");
 
 
+
+music.volume = 0.2;
+
+
+
+// попытка запуска
 
 window.addEventListener("load",()=>{
 
+    music.play().catch(()=>{
 
-music.play().then(()=>{
+        console.log("автозапуск заблокирован браузером");
 
-
-btn.innerHTML="⏸";
-
-
-}).catch(()=>{
-
-
-btn.innerHTML="🎵";
-
-
-});
-
+    });
 
 });
 
@@ -819,42 +991,69 @@ btn.innerHTML="🎵";
 
 
 
-btn.onclick=()=>{
+// первый клик запускает если браузер запретил
+
+document.addEventListener("click",()=>{
 
 
-if(music.paused){
+    if(music.paused){
+
+        music.play();
+
+    }
 
 
-music.play();
+},{once:true});
 
 
-btn.innerHTML="⏸";
 
 
-}
-
-else{
 
 
-music.pause();
+
+// mute
 
 
-btn.innerHTML="🎵";
+muteBtn.onclick=()=>{
 
 
-}
+    if(music.muted){
+
+
+        music.muted=false;
+
+
+        muteBtn.innerHTML="🔊";
+
+
+    }
+
+    else{
+
+
+        music.muted=true;
+
+
+        muteBtn.innerHTML="🔇";
+
+
+    }
 
 
 };
 
 
 
+
+
+
+// громкость
 
 
 volume.oninput=()=>{
 
 
-music.volume=volume.value/100;
+    music.volume = volume.value / 100;
 
 
 };
@@ -865,23 +1064,24 @@ music.volume=volume.value/100;
 
 
 
-// ЗВУК КЛИКОВ
+// ЗВУК КНОПОК
 
 
-let click=document.getElementById("click");
+const clickSound = document.getElementById("click");
 
 
 
-document.querySelectorAll(".button").forEach(button=>{
+document.querySelectorAll(".button").forEach(btn=>{
 
 
-button.addEventListener("click",()=>{
+btn.addEventListener("click",()=>{
 
 
-click.volume=0.3;
+clickSound.volume=0.3;
 
 
-click.play();
+clickSound.play();
+
 
 
 });
@@ -894,45 +1094,111 @@ click.play();
 
 
 
-// ЧАСТИЦЫ
 
 
-for(let i=0;i<80;i++){
+// ПЕРЬЯ
 
 
-
-let p=document.createElement("div");
-
-
-p.className="particle";
+const feathers = document.getElementById("feathers");
 
 
-
-p.style.left=Math.random()*100+"%";
-
+for(let i=0;i<35;i++){
 
 
-p.style.animationDuration=
+let feather=document.createElement("div");
 
-(5+Math.random()*10)+"s";
+
+feather.className="feather";
+
+
+feather.innerHTML="🪽";
 
 
 
-p.style.animationDelay=
+feather.style.left=Math.random()*100+"%";
+
+
+feather.style.animationDuration=
+
+(8+Math.random()*12)+"s";
+
+
+
+feather.style.animationDelay=
 
 Math.random()*5+"s";
 
 
 
-document
-
-.getElementById("particles")
-
-.appendChild(p);
+feathers.appendChild(feather);
 
 
 
 }
+
+
+
+
+
+
+
+
+// СВЕЧЕНИЕ ЗА МЫШКОЙ
+
+
+const glow=document.getElementById("mouseGlow");
+
+
+
+document.addEventListener("mousemove",(e)=>{
+
+
+glow.style.left=e.clientX-90+"px";
+
+
+glow.style.top=e.clientY-90+"px";
+
+
+});
+
+
+
+
+
+
+
+
+
+// СЕКРЕТНЫЙ КЛИК
+
+
+let clicks=0;
+
+
+
+title.onclick=()=>{
+
+
+clicks++;
+
+
+
+if(clicks>=5){
+
+
+title.innerHTML="ACCESS GRANTED";
+
+
+title.style.textShadow="0 0 25px white";
+
+
+
+}
+
+
+};
+
+
 
 
 
