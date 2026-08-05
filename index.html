@@ -32,6 +32,82 @@ background:radial-gradient(circle,transparent,rgba(0,0,0,.85));
 z-index:-2;
 }
 
+.scanlines{
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+background:repeating-linear-gradient(
+to bottom,
+rgba(255,255,255,.035) 0px,
+rgba(255,255,255,.035) 1px,
+transparent 2px,
+transparent 4px
+);
+mix-blend-mode:overlay;
+animation:jitter 0.3s steps(2) infinite;
+}
+
+.noise{
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+opacity:.05;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+animation:flicker .2s steps(2) infinite;
+}
+
+@keyframes jitter{
+0%{transform:translateY(0)}
+50%{transform:translateY(1px)}
+100%{transform:translateY(0)}
+}
+
+@keyframes flicker{
+0%{opacity:.04}
+50%{opacity:.07}
+100%{opacity:.04}
+}
+
+.log{
+position:fixed;
+bottom:30px;
+left:40px;
+z-index:5;
+font-family:'Courier New',monospace;
+font-size:12px;
+color:#5a5;
+letter-spacing:1px;
+line-height:1.8;
+text-shadow:0 0 4px rgba(85,170,85,.5);
+max-width:340px;
+}
+
+.log div{
+opacity:0;
+animation:fadeLine .3s forwards;
+white-space:nowrap;
+overflow:hidden;
+}
+
+@keyframes fadeLine{
+to{opacity:1}
+}
+
+.log .cursor{
+display:inline-block;
+width:7px;
+height:12px;
+background:#5a5;
+vertical-align:middle;
+animation:blink 1s step-end infinite;
+}
+
+@keyframes blink{
+50%{opacity:0}
+}
+
 .intro,.profile{
 height:100vh;
 display:flex;
@@ -275,6 +351,13 @@ height:auto;
 min-height:100vh;
 }
 
+.log{
+left:16px;
+bottom:16px;
+font-size:10px;
+max-width:220px;
+}
+
 }
 </style>
 </head>
@@ -286,6 +369,10 @@ min-height:100vh;
 </video>
 
 <div class="overlay"></div>
+<div class="scanlines"></div>
+<div class="noise"></div>
+
+<div class="log" id="log"></div>
 
 <audio id="music" loop>
 <source src="cry.mp3" type="audio/mp3">
@@ -392,6 +479,68 @@ const mute=document.getElementById("mute");
 const clickSound=document.getElementById("click");
 
 music.volume=0.15;
+
+
+const logLines=[
+"[SCAN] user detected...",
+"[MEM] loading profile... 97%",
+"[NET] connection established",
+"[LOC] triangulating position...",
+"[LOC] signal lost",
+"[SYS] identity: unknown",
+"[SYS] access granted"
+];
+
+const logEl=document.getElementById("log");
+let logIndex=0;
+
+function typeLine(){
+
+if(logIndex>=logLines.length){
+
+setTimeout(()=>{
+
+logEl.innerHTML="";
+
+logIndex=0;
+
+typeLine();
+
+},4000);
+
+return;
+
+}
+
+const line=document.createElement("div");
+
+logEl.appendChild(line);
+
+const text=logLines[logIndex];
+
+let charIndex=0;
+
+const interval=setInterval(()=>{
+
+line.textContent=text.slice(0,charIndex+1);
+
+charIndex++;
+
+if(charIndex>=text.length){
+
+clearInterval(interval);
+
+logIndex++;
+
+setTimeout(typeLine,500);
+
+}
+
+},35);
+
+}
+
+typeLine();
 
 
 function enterSite(){
