@@ -2,68 +2,257 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>$ Adapter $</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#050505;color:white;font-family:Arial;overflow:hidden}
-#bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(30%)}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55)}
-.intro,.profile{height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center}
-.profile{display:none}
-.profile.active{display:flex}
-.title{font-size:70px;letter-spacing:8px}
-.enter,.buttons a{margin-top:30px;padding:15px 40px;background:#111;color:white;border:1px solid #777;border-radius:10px;text-decoration:none;cursor:pointer}
-.card{padding:40px;background:#ffffff10;border:1px solid #ffffff44;border-radius:20px;backdrop-filter:blur(15px)}
-.buttons{display:flex;flex-direction:column;gap:15px;margin-top:25px}
-.music{position:fixed;right:20px;top:20px}
+
+body{
+background:#050505;
+color:white;
+font-family:Arial,sans-serif;
+overflow:hidden;
+}
+
+#bg{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-3;
+filter:brightness(30%) contrast(120%);
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:radial-gradient(circle,transparent,rgba(0,0,0,.85));
+z-index:-2;
+}
+
+.intro,.profile{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+
+.rec{
+position:absolute;
+top:40px;
+left:40px;
+color:#aaa;
+letter-spacing:4px;
+}
+
+.rec span{
+color:#900;
+}
+
+.title{
+font-size:70px;
+letter-spacing:8px;
+background:linear-gradient(90deg,#fff,#777,#fff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.subtitle{
+margin-top:20px;
+color:#888;
+letter-spacing:3px;
+}
+
+.enter{
+margin-top:50px;
+padding:16px 60px;
+background:rgba(255,255,255,.05);
+color:white;
+border:1px solid rgba(255,255,255,.4);
+border-radius:8px;
+letter-spacing:5px;
+font-size:16px;
+cursor:pointer;
+transition:.4s;
+}
+
+.enter:hover{
+background:white;
+color:black;
+box-shadow:0 0 40px white;
+transform:translateY(-5px);
+}
+
+.profile{
+display:none;
+}
+
+.profile.active{
+display:flex;
+}
+
+.card{
+padding:40px;
+width:420px;
+max-width:90%;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.25);
+border-radius:20px;
+backdrop-filter:blur(15px);
+}
+
+.buttons{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-top:30px;
+}
+
+.buttons a{
+padding:15px;
+border:1px solid rgba(255,255,255,.3);
+border-radius:10px;
+color:white;
+text-decoration:none;
+transition:.3s;
+}
+
+.buttons a:hover{
+background:white;
+color:black;
+}
+
+.music{
+position:fixed;
+right:20px;
+top:20px;
+padding:12px;
+background:rgba(0,0,0,.5);
+border:1px solid rgba(255,255,255,.3);
+border-radius:15px;
+}
 </style>
 </head>
+
 <body>
 
-<video id="bg" autoplay muted loop>
-<source src="cry.mp4">
+<video id="bg" autoplay muted loop playsinline>
+<source src="cry.mp4" type="video/mp4">
 </video>
 
 <div class="overlay"></div>
 
 <audio id="music" loop>
-<source src="cry.mp3">
+<source src="cry.mp3" type="audio/mp3">
 </audio>
 
+<audio id="click">
+<source src="click.mp3" type="audio/mp3">
+</audio>
+
+
 <section class="intro" id="intro">
-<p>● REC 01</p>
-<h1 class="title">THE SYSTEM<br>REMEMBERS YOU</h1>
-<p>unknown user detected</p>
-<button class="enter" onclick="enterSite()">ENTER</button>
+
+<div class="rec"><span>●</span> REC 01</div>
+
+<h1 class="title">
+THE SYSTEM<br>
+REMEMBERS YOU
+</h1>
+
+<div class="subtitle">
+unknown user detected
+</div>
+
+<button class="enter" onclick="enterSite()">
+ENTER
+</button>
+
 </section>
+
 
 <section class="profile" id="profile">
+
 <div class="card">
+
 <h1>$ Adapter $</h1>
+
+<br>
+
 <p>STATUS: ONLINE</p>
 <p>MEMORY: 97%</p>
+<p>LOCATION: UNKNOWN</p>
+
+
 <div class="buttons">
-<a href="https://t.me/sex2iq">✈ Telegram</a>
-<a href="https://open.spotify.com/playlist/4xSXqo0GxFRjYtacvNbGqM">🎧 Spotify</a>
+
+<a href="https://t.me/sex2iq">
+✈ Telegram
+</a>
+
+
+<a href="https://open.spotify.com/playlist/4xSXqo0GxFRjYtacvNbGqM">
+🎧 Spotify
+</a>
+
 </div>
+
 </div>
+
 </section>
 
+
 <div class="music">
-<button onclick="music.muted=!music.muted">🔊</button>
-<input id="volume" type="range" value="15">
+
+<button id="mute">🔊</button>
+
+<input id="volume" type="range" min="0" max="100" value="15">
+
 </div>
 
+
 <script>
+
 const music=document.getElementById("music");
 const volume=document.getElementById("volume");
-music.volume=.15;
+const mute=document.getElementById("mute");
+const clickSound=document.getElementById("click");
+
+music.volume=0.15;
+
+
 function enterSite(){
+
 document.getElementById("intro").style.display="none";
+
 document.getElementById("profile").classList.add("active");
+
 music.play().catch(()=>{});
+
+clickSound.play().catch(()=>{});
+
 }
-volume.oninput=()=>music.volume=volume.value/100;
+
+
+volume.oninput=()=>{
+
+music.volume=volume.value/100;
+
+}
+
+
+mute.onclick=()=>{
+
+music.muted=!music.muted;
+
+mute.innerHTML=music.muted?"🔇":"🔊";
+
+}
+
 </script>
 
 </body>
